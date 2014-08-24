@@ -11,7 +11,8 @@ var middleware = require('./middleware');
 // mongoose.set('debug', true);
 //  Install module by updating package.json  npm install mongoose --save
 //  Install module by updating package.json  npm install express --save
-mongoose.connect('mongodb://milos:milos@kahana.mongohq.com:10008/app28817745', function(err, db) {
+//mongodb://heroku_app28817745:f6106dkmo2qrtdr03ns0t8pm8t@ds063899.mongolab.com:63899/heroku_app28817745
+mongoose.connect('mongodb://heroku_app28817745:f6106dkmo2qrtdr03ns0t8pm8t@ds063899.mongolab.com:63899/heroku_app28817745', function(err, db) {
 	if (err) throw err;
 
 	var app = express();

@@ -4,15 +4,15 @@ var createdDate = require('../plugins/createdDate');
 
 // define the schema
 var schema = mongoose.Schema({
-		title: { type: String, trim: true }
-	, body: String
-	, author: { type: String, ref: 'User' }
-})
+	title: { type: String, trim: true },
+	body: String,
+	author: { type: String, ref: 'User' }
+});
 
 // create a query for comments with a blogpost _id matching `id`
 schema.statics.findComments = function (id, callback) {
 	return this.model('Comment').find({ post: id }, callback);
-}
+};
 
 schema.statics.edit = function (req, callback) {
 	var id = req.param('id');
@@ -31,10 +31,9 @@ schema.statics.edit = function (req, callback) {
 		if (0 === numAffected) {
 			return callback(new Error('no post to modify'));
 		}
-
 		callback();
 	})
-}
+};
 
 // add created date property
 schema.plugin(createdDate);
@@ -46,14 +45,14 @@ var lifecycle = require('mongoose-lifecycle');
 schema.plugin(lifecycle);
 
 // compile the model
-var Post = mongoose.model('BlogPost', schema);
+var Post = mongoose.model('blogpost', schema);
 
 // handle events
 Post.on('afterInsert', function (post) {
 	// fake tweet this
 	var url = "http://localhost:3000/posts/";
 	console.log('Read my new blog post! %s%s', url, post.id);
-})
+});
 
 Post.on('afterRemove', function (post) {
 	this.model('Comment').remove({ post: post._id }).exec(function (err) {
@@ -61,6 +60,6 @@ Post.on('afterRemove', function (post) {
 			console.error('had trouble cleaning up old comments', err.stack);
 		}
 	})
-})
+});
 
 module.exports = Post;

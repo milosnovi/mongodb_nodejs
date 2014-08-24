@@ -3,7 +3,7 @@ var login = require('./login');
 var posts = require('./posts');
 var truncate = require('truncate');
 var mongoose = require('mongoose');
-var BlogPost = mongoose.model('BlogPost');
+var BlogPost = mongoose.model('blogpost');
 
 var express = require('express');
 
@@ -17,7 +17,6 @@ module.exports = function (app) {
 				posts[i].title = truncate(posts[i].title, 20);
 				posts[i].body = truncate(posts[i].body, 255);
 			}
-			console.log(posts);
 			res.render('home.jade', { posts: posts });
 		});
 	});

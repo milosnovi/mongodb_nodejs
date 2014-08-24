@@ -2,13 +2,39 @@
 extends ../layout
 
 block content
-	h2= post.title
-	p= post.body
-	span= post.created.toGMTString()
-	p by #{post.author.fullname}
-	br
-	br
-	div
-		a(href="/post/edit/" + post.id) Edit
-		| |
-		a(href="/post/remove/" + post.id) Delete
+	.row
+		.col-sm-8.blog-main
+			.blog-post
+				h2.blog-post-title= post.title
+				p.blog-post-meta= post.created.toGMTString()
+				p= post.body
+				if session.isLoggedIn
+					a(href="/post/edit/" + post.id) Edit
+					a(href="/post/remove/" + post.id) Delete
+
+		.col-sm-3.col-sm-offset-1.blog-sidebar
+			.sidebar-module.sidebar-module-inset
+				h2 About
+				p Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+			.sidebar-module
+				h4 Archives
+				ol.list-unstyled
+					li
+						a(href="/post/archives/2014/9") September 2014
+					li
+						a(href="/post/archives/2014/8") August 2014
+					li
+						a(href="/post/archives/2014/7") July 2014
+					li
+						a(href="/post/archives/2014/6") June 2014
+
+	.comments
+		ul
+			each comment in comments
+				li
+					p.text= comment.text
+					p.author= comment.author
+		if session.isLoggedIn
+			form(method='post', action="/post/comment/" + post.id)
+				textarea(name='text')
+				input(type='submit', value='Save')

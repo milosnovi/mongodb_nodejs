@@ -1,20 +1,25 @@
 {
   "name": "blog",
-  "version": "0.0.0",
+  "version": "0.10.29",
   "description": "Blog Project for M101JS",
-  "main": "mongoose_app.js",
+  "main": "app.js",
   "dependencies": {
-    "mongoose": "~3.6.15",
-    "express": "~3.3.4",
+    "character-parser": "^1.2.1",
+    "constantinople": "^2.0.1",
+    "email-validator": "~0.1.2",
+    "express": "^3.3.8",
+    "express-mongoose": "^0.1.0",
     "jade": "~0.34.1",
-    "email-validator": "~0.1.2"
+    "mongoose": "^3.6.20",
+    "mongoose-lifecycle": "^1.0.0",
+    "transformers": "^3.1.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",
-  "author": "Shaun Verch <shaun.verch@10gen.com>",
+  "author": "Milos Novicevic <m.novicevic@gmail.com>",
   "license": "BSD",
   "private": true
 }

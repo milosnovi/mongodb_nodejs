@@ -11,14 +11,15 @@ var middleware = require('./middleware');
 // mongoose.set('debug', true);
 //  Install module by updating package.json  npm install mongoose --save
 //  Install module by updating package.json  npm install express --save
-mongoose.connect('mongodb://localhost:27017/blog-final', function(err, db) {
+mongoose.connect('mongodb://milos:milos@kahana.mongohq.com:10008/app28817745', function(err, db) {
 	if (err) throw err;
 
 	var app = express();
 	middleware(app);
 	routes(app);
 
-	app.listen(3000, function () {
-		console.log('now listening on http://localhost:3000');
+	var port = Number(process.env.PORT || 5000);
+	app.listen(port, function () {
+		console.log('now listening on http://localhost:' + port);
 	})
 });
